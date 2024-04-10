@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto</title>
+    <script src="lotto.js" type="application/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="index.html">DATA1700 - Webprogrammering</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="lotto_rekker.html">Spill her</a></li>
+                <li><a href="lotto_trekning.html">Trekning</a></li>
+                <li><a href="lotto_resultater.html">Resultater</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Spill lotto her</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <h2>Fyll inn rekken</h2>
+                <div class="form-group">
+                    <label for="tall1"></label>
+                    <input type="text" class="form-control" id="tall1">
+                    <label for="tall2"></label>
+                    <input type="text" class="form-control" id="tall2">
+                    <label for="tall3"></label>
+                    <input type="text" class="form-control" id="tall3">
+                    <label for="tall4"></label>
+                    <input type="text" class="form-control" id="tall4">
+                    <label for="tall5"></label>
+                    <input type="text" class="form-control" id="tall5">
+                    <label for="tall6"></label>
+                    <input type="text" class="form-control" id="tall6">
+                    <label for="tall7"></label>
+                    <input type="text" class="form-control" id="tall7">
+                </div>
+                <button class="btn btn-primary" onclick="registrerRekke()">Registrer rekke</button>
+                <button class="btn btn-info" onclick="fyllInnRekke()">Fyll inn for meg</button>
+            </div>
+            <div class="col-md-9">
+                <h2>Dine rekker</h2>
+                <table class="table">
+                    <tr><th>Rekke</th></tr>
+                </table>
+                <button class="btn btn-warning" onclick="slettSisteRekke()">Slett siste rekke</button>
+                <button class="btn btn-danger" onclick="slettAlleRekker()">Slett alle rekkene</button>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>
