@@ -34,6 +34,8 @@
             <div class="col-md-3">
                 <h2>Fyll inn rekken</h2>
                 <div class="form-group">
+                    <label for="tall0"></label>
+                    <input type="text" class="form-control" id="tall0">
                     <label for="tall1"></label>
                     <input type="text" class="form-control" id="tall1">
                     <label for="tall2"></label>
@@ -46,17 +48,13 @@
                     <input type="text" class="form-control" id="tall5">
                     <label for="tall6"></label>
                     <input type="text" class="form-control" id="tall6">
-                    <label for="tall7"></label>
-                    <input type="text" class="form-control" id="tall7">
                 </div>
                 <button class="btn btn-primary" onclick="registrerRekke()">Registrer rekke</button>
                 <button class="btn btn-info" onclick="fyllInnRekke()">Fyll inn for meg</button>
             </div>
             <div class="col-md-9">
                 <h2>Dine rekker</h2>
-                <table class="table">
-                    <tr><th>Rekke</th></tr>
-                </table>
+                <div id="rekker"></div>
                 <button class="btn btn-warning" onclick="slettSisteRekke()">Slett siste rekke</button>
                 <button class="btn btn-danger" onclick="slettAlleRekker()">Slett alle rekkene</button>
             </div>

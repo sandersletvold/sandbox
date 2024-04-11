@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.security.SecureRandom;
 
@@ -34,8 +35,16 @@ public class LottoController {
     }
 
     @GetMapping("/tilfeldigTall")
-    public SecureRandom tilfeldigTall() {
-        SecureRandom random = new SecureRandom();
-        return random;
+    public List<Integer> tilfeldigTall() {
+        SecureRandom secureRandom = new SecureRandom();
+        List<Integer> tallRekke = new ArrayList<>();
+        while (tallRekke.size() < 7) {
+            int tilfeldigTall = secureRandom.nextInt(1,35); // Legger til 1 for å få tall mellom 1 og 34
+            if (!tallRekke.contains(tilfeldigTall)) {
+                tallRekke.add(tilfeldigTall);
+            }
+        }
+        Collections.sort(tallRekke);
+        return tallRekke;
     }
 }
