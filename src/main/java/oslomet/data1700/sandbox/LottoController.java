@@ -24,9 +24,10 @@ public class LottoController {
     }
 
     @GetMapping("/slettSiste")
-    public void slettSiste() {
+    public List<Lotto> slettSiste() {
         int sisteTall = lottoRekker.size();
         lottoRekker.remove(sisteTall-1);
+        return lottoRekker;
     }
 
     @GetMapping("/slettAlle")
