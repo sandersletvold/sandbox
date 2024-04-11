@@ -91,9 +91,19 @@ function slettAlleRekker() {
 
 // lotto_trekning.html
 function hentVinnertall() {
-    $.get("/vinnerTall", function (vinnertall){
-        skrivUtVinnertall(vinnertall);
-        $.post("/hentVinnertall", vinnertall);
+    $.get("/hentVinnerTall", function (vinnertall){
+        const tall = {
+            vinnertall0 : vinnertall[0],
+            vinnertall1 : vinnertall[1],
+            vinnertall2 : vinnertall[2],
+            vinnertall3 : vinnertall[3],
+            vinnertall4 : vinnertall[4],
+            vinnertall5 : vinnertall[5],
+            vinnertall6 : vinnertall[6]
+        };
+        $.post("/sendVinnertall", tall, function (){
+            skrivUtVinnertall(vinnertall);
+        });
     });
 }
 

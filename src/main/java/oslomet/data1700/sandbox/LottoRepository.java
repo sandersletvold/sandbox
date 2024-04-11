@@ -24,7 +24,7 @@ public class LottoRepository {
     }
 
     public List<Lotto> slettSiste() {
-        String fjern = "DELETE FROM lottorekker LIMIT 1";
+        String fjern = "DELETE FROM lottorekker WHERE rekkeId = (SELECT MAX(rekkeId) FROM lottorekker)";
         db.update(fjern);
         String sql = "SELECT * FROM lottorekker";
         List<Lotto> fjernetRekke = db.query(sql, new BeanPropertyRowMapper<>(Lotto.class));

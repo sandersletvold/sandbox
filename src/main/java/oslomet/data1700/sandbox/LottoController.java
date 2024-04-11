@@ -49,7 +49,7 @@ public class LottoController {
         return tallRekke;
     }
 
-    @GetMapping("/vinnerTall")
+    @GetMapping("/hentVinnerTall")
     public List<Integer> vinnerTall() {
         List<Integer> vinnerTallrekke = new ArrayList<>();
         SecureRandom secureRandom = new SecureRandom();
@@ -63,7 +63,7 @@ public class LottoController {
         return vinnerTallrekke;
     }
 
-    @PostMapping("/hentVinnertall")
+    @PostMapping("/sendVinnertall")
     public void vinnerRekke(LottoVinnertall vinnertall) {
         repository.lagreVinnerTall(vinnertall);
     }
