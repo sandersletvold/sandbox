@@ -1,5 +1,6 @@
 package oslomet.data1700.sandbox;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,41 +12,59 @@ import java.security.SecureRandom;
 
 @RestController
 public class LottoController {
-    private List<Lotto> lottoRekker = new ArrayList<>();
+    @Autowired
+    private LottoRepository repository;
 
     @PostMapping("/tilServer")
     public void mottattRekke(Lotto lottorekke) {
-        lottoRekker.add(lottorekke);
+        repository.lagreRekke(lottorekke);
     }
 
     @GetMapping("/tilKlient")
     public List<Lotto> sendRekker() {
-        return lottoRekker;
+        return repository.hentRekker();
     }
 
     @GetMapping("/slettSiste")
     public List<Lotto> slettSiste() {
-        int sisteTall = lottoRekker.size();
-        lottoRekker.remove(sisteTall-1);
-        return lottoRekker;
+        return repository.slettSiste();
     }
 
     @GetMapping("/slettAlle")
     public void slettAlle() {
-        lottoRekker.clear();
+        repository.slettRekker();
     }
 
     @GetMapping("/tilfeldigTall")
     public List<Integer> tilfeldigTall() {
-        SecureRandom secureRandom = new SecureRandom();
         List<Integer> tallRekke = new ArrayList<>();
+        SecureRandom secureRandom = new SecureRandom();
         while (tallRekke.size() < 7) {
-            int tilfeldigTall = secureRandom.nextInt(1,35); // Legger til 1 for å få tall mellom 1 og 34
+            int tilfeldigTall = secureRandom.nextInt(1,35);
             if (!tallRekke.contains(tilfeldigTall)) {
                 tallRekke.add(tilfeldigTall);
             }
         }
         Collections.sort(tallRekke);
         return tallRekke;
+    }
+
+    @GetMapping("/vinnerTall")
+    public List<Integer> vinnerTall() {
+        List<Integer> vinnerTallrekke = new ArrayList<>();
+        SecureRandom secureRandom = new SecureRandom();
+        while (vinnerTallrekke.size() < 7) {
+            int tilfeldigTall = secureRandom.nextInt(1,35);
+            if (!vinnerTallrekke.contains(tilfeldigTall)) {
+                vinnerTallrekke.add(tilfeldigTall);
+            }
+        }
+        Collections.sort(vinnerTallrekke);
+        return vinnerTallrekke;
+    }
+
+    @PostMapping("/hentVinnertall")
+    public void vinnerRekke(LottoVinnertall vinnertall) {
+        repository.lagreVinnerTall(vinnertall);
     }
 }

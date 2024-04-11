@@ -1,6 +1,15 @@
 package oslomet.data1700.sandbox;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "lottorekker")
 public class Lotto {
+    @Id
+    @GeneratedValue
     private int tall0;
     private int tall1;
     private int tall2;

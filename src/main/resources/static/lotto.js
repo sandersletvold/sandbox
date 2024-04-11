@@ -1,16 +1,21 @@
+// lotto.html
 document.addEventListener("DOMContentLoaded", function (){
     $.get("/tilKlient", function (rekke){
         utSkrift(rekke);
+        // $("#vinnertall").html(sessionStorage.getItem("vinnertabell"));
     });
 })
 
 function utSkrift(rekke) {
-    let ut = "<table class='table'>";
+    let ut = "<table class='table table-striped'>";
+    let rekkeNr = 1;
     for (let i of rekke) {
-        ut += "<tr><th class='active'>Rekke</th><td>" +i.tall0+ "</td><td>" +i.tall1+ "</td><td>" +i.tall2+ "</td><td>" +i.tall3+ "</td><td>" +i.tall4+ "</td><td>" +i.tall5+ "</td><td>" +i.tall6+ "</td></tr>";
+        ut += "<tr><th>Rekke #" +rekkeNr+ "</th><td>" +i.tall0+ "</td><td>" +i.tall1+ "</td><td>" +i.tall2+ "</td><td>" +i.tall3+ "</td><td>" +i.tall4+ "</td><td>" +i.tall5+ "</td><td>" +i.tall6+ "</td></tr>";
+        rekkeNr++;
     }
     ut += "</table>";
     $("#rekker").html(ut);
+    $("#trekningRekker").html(ut);
 }
 
 function registrerRekke() {
@@ -55,7 +60,7 @@ function registrerRekke() {
 function hentAlleRekker() {
     $.get("/tilKlient", function (rekke){
         utSkrift(rekke);
-    })
+    });
 }
 
 function hentTilfeldigRekke() {
@@ -69,16 +74,35 @@ function fyllInnTilfeldigRekke(tilfeldigTall) {
         let index = "#tall"+i;
         $(index).val(tilfeldigTall[i]);
     }
-}
+};
 
 function slettSisteRekke() {
     $.get("/slettSiste", function (rekke){
         utSkrift(rekke);
-    })
+    });
 }
 
 function slettAlleRekker() {
     $.get("/slettAlle", function (rekke){
         utSkrift(rekke);
-    })
+    });
 }
+
+
+// lotto_trekning.html
+function hentVinnertall() {
+    $.get("/vinnerTall", function (vinnertall){
+        skrivUtVinnertall(vinnertall);
+        $.post("/hentVinnertall", vinnertall);
+    });
+}
+
+function skrivUtVinnertall(vinnertall) {
+    let ut = "<table class='table table-bordered'><tr class='bg-success'><th>Vinnertall</th>";
+    for (let i = 0; i<vinnertall.length; i++) {
+        ut += "<td>" +vinnertall[i]+ "</td>"
+    }
+    ut += "</strong></tr></table>";
+    $("#vinnertall").html(ut);
+    // sessionStorage.setItem("vinnertabell", ut);
+};
