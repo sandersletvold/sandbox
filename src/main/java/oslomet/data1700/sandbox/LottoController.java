@@ -49,9 +49,10 @@ public class LottoController {
         return tallRekke;
     }
 
+    List<Integer> vinnerTallrekke = new ArrayList<>();
     @GetMapping("/hentVinnerTall")
     public List<Integer> vinnerTall() {
-        List<Integer> vinnerTallrekke = new ArrayList<>();
+        vinnerTallrekke.clear();
         SecureRandom secureRandom = new SecureRandom();
         while (vinnerTallrekke.size() < 7) {
             int tilfeldigTall = secureRandom.nextInt(1,35);
